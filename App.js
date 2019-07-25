@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View,Button} from 'react-native';
+import {View, Button, NativeModules} from 'react-native';
 import {WebView} from 'react-native-webview';
 
 export default class Test extends Component {
@@ -42,7 +42,16 @@ export default class Test extends Component {
                         // alert("你点击了按钮！");
                         this.webref.injectJavaScript(`alert(1)`);
                     }}
-                    title="点我！"
+                    title="RN调用JS！"
+                />
+                <Button
+                    onPress={() => {
+                        // alert("你点击了按钮！");
+                        NativeModules.CourseJavaMoudle.show('我的万能JS', function (args) {
+                            alert(args);
+                        });
+                    }}
+                    title="RN调用Java！"
                 />
             </View>
         );
